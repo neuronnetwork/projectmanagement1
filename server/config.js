@@ -4,7 +4,7 @@ var path = require('path');
 
 module.exports = {
 		server: {
-		    listenPort: 1337,                                   // The port on which the server is to listen (means that the app is at http://localhost:3000 for instance)
+		    listenPort: 1339                            // The port on which the server is to listen (means that the app is at http://localhost:3000 for instance)
  		  }, 
  		 directories: {
 			  htmlFiles: '/templates/',
