@@ -1,0 +1,105 @@
+.chart {
+    background: #eee;
+    padding: 3px;
+}
+
+.chart div {
+  width: 0;
+  transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 5px;
+  color: white;
+  box-shadow: 2px 2px 2px #666;
+}
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.diaryentry {
+	fill: #FAF284; 
+	stroke: #FAF284; 
+	shape-rendering: crispEdges;
+}
+
+div.tooltip {   
+  position: absolute;           
+  text-align: center;     
+        
+  width: 80px;                  
+  height: 50px;                 
+  padding: 2px;             
+  font: 12px sans-serif;        
+  background: lightsteelblue;   
+  border: 0px;      
+  border-radius: 8px;           
+  pointer-events: none;         
+}
+
+div.tooltipCircle {   
+  position: absolute;           
+  text-align: center;  
+  width: 90px;                  
+  height: 40px;                 
+  padding: 2px;             
+  font: 9px sans-serif;  
+  background: white;   
+  
+}
+
+.infobox {
+	fill: #DED7DE;  
+	shape-rendering: crispEdges;
+}
+
+.infotext { 
+	font-size: 12px; 
+}
+
+
+.label {
+  fill: #777;
+}
+
+.year.label {
+  font: 500 43px "Helvetica Neue";
+  fill: #ddd;
+}
+
+.year.label.active {
+  fill: #aaa;
+}
+
+.overlay {
+  fill: none;
+  stroke: #EEE;
+  pointer-events: all;
+  cursor: ew-resize;
+}
+ 
+ 
+ .svgvideohidden {
+ 	display: none; 
+ }

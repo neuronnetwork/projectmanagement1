@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de" ng-app="grgProjectmanagement">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+
+    <title>Caritas Spenden & WebShop</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/chart.css" rel="stylesheet">
+    <link href="css/monitor.css" rel="stylesheet">
+ 
+ 	<link rel="stylesheet" href="css/jquery-ui.css"/>
+   	  
+   	<script src="js/lib/d3.v3.js"></script> 
+   
+	<script src="js/lib/angular-file-upload-shim.js"></script> 
+      
+   	<script src="js/lib/jquery-2.0.3.js"></script>
+   	<script src="js/lib/jquery-ui-1.10.3.custom.js"></script>
+     
+    <script src="js/lib/bootstrap.js"></script>
+    
+    <script src="js/lib/angular.js"></script>
+ 	<script src="js/lib/angular-route.js"></script>
+ 	<script src="js/lib/angular-locale_de-at.js"></script>
+ 	
+ 	<!-- main()  -->
+ 	<script src="js/pm.js"></script>
+ 	
+ 	<!--  controller --> 
+ 	<script src="js/controller/ctrl_userprofile.js"></script>
+   	<script src="js/controller/ctrl_projekte.js"></script>
+   	<script src="js/controller/ctrl_admin.js"></script>
+   	<script src="js/controller/ctrl_login.js"></script>   
+ 	<script src="js/controller/ctrl_calendar.js"></script> 
+ 
+	<!--  directives
+	<script src="js/directives/directives_shop_charts.js"></script>
+ 	<script src="js/directives/directives_project_tasklist.js"></script> -->
+   	<script src="js/directives/directives_tabpane.js"></script>
+ 	 	
+ 	
+ 	<script src="js/lib/angular-file-upload.js"></script>
+ 	<script src="js/lib/ui-bootstrap-custom-tpls-0.9.0.min.js"></script>
+ 	<script src="js/lib/date.js"></script>	
+ 	
+ 	<script src="js/lib/etherpad.js"></script>
+  </head>
+
+  <body> 
+	    <!-- Fixed navbar -->
+	    <div class="navbar navbar-default  ">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	           <!-- 
+	          <a class="navbar-brand" href="#">€€€€</a>
+	          -->
+	        </div>
+	        <div class="navbar-collapse collapse">
+	        	<ul class="nav navbar-nav"> 
+				    
+		         	<li ><a href="#/projekte">Projekte</a></li>
+		            <li><a href="#/calendar">Kalender</a></li>	  		                
+				</ul>
+			   
+			    <ul class="nav navbar-nav navbar-right">
+					 <!--
+					 <li ngShow="isLoggedIn"><a href="#/logout">Logout</a></li>
+					 -->   
+				    <!--  
+				    <li ><a href="#/userprofile">{{user.firstname}}</a></li>
+				    
+				    <li><a href="#/fileupload">Fileupload</a></li>
+				    -->
+				</ul>
+				
+	        </div><!--/.nav-collapse -->
+	      </div>
+	    </div>
+ 	
+    <div class="container">	
+		<div class="row">
+				<div ng-view></div>
+		</div>
+    </div> <!-- /container -->
+  </body>
+</html>

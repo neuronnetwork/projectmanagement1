@@ -1,0 +1,215 @@
+.supersmall {
+	font-size: 6px; 
+}
+
+.kipa-diary {
+	margin-top: 40px; 
+}
+
+
+.little-border {
+	border: solid; 
+	border-color: lightgray;
+	border-width: 1px; 
+	margin-top: 10px; 
+}
+
+.kipa-header {
+	border: solid; 
+	border-width: 1px; 
+	border-color: lightgray;
+}
+
+.kipadeleted {
+	text-decoration: line-through;
+}
+
+.kipahidedetails {
+	display : none;  
+	margin-top: 25px;
+}
+
+.light-grey {
+	background-color: #EFF5FB; 
+}
+
+.etherpad {
+	min-height: 500px; 
+}
+
+
+.taskhideattachments {
+	display : none;   
+	margin-bottom: 20px; 
+	border: solid; 
+	border-color: lightgray; 
+	border-width: 1px; 
+ }
+ 
+ .taskhidelinks {
+	display : none;  
+	margin-bottom: 20px; 
+	margin-top: 20px;
+	border: solid; 
+	border-color: lightgray; 
+	border-width: 1px; 
+ }    
+ 
+ .taskhidecomment  {
+	display : none;  
+	margin-top: 20px; 
+	border: solid; 
+	border-color: lightgray; 
+	border-width: 1px; 
+ }    
+ 
+ 
+ .hafi-small {
+ 	width: 50px;  
+ }
+ 
+  
+.chartArea {
+   clip-path: url(#clip);
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+ 
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+  
+
+.open {
+	fill: #FA5858;  
+}
+
+.done {
+	fill: #58FA82;  
+}   
+
+.miscellaneous {
+	fill: #819FF7;
+}
+  
+.project {
+	stroke-width: 2; 
+}
+ 
+.milestone {
+	stroke-width: 1;	  
+}
+
+.calendar-filter-all {
+	padding-top: 20px; 
+	
+}
+
+.project-list  {
+	border-bottom: solid; 
+	border-color: lightgray;
+	border-width : 1px; 
+}
+
+.taskicons1 {
+	padding-right: 10px; 
+	padding-left: 10px; 
+}
+
+.taskicons2 {
+	padding-left: 10px; 
+}
+
+.vertikalabstand-tab {
+	padding-top: 10px; 
+}
+ 
+.task-list {
+	border: solid; 
+	border-color: lightgray;
+	border-width: 1px; 
+}
+
+.attachments-add-files  {
+	min-height : 50px; 
+	border : solid; 
+	border-width: 1px;
+	background-color: lightgray; 
+}
+
+.addnewfilegroup, .addnewlink {
+	display : none; 
+	padding-top: 10px; 
+}
+
+.task-attachment-filegroup, .filegroup-description, .link-description, .comment-description{
+	padding-bottom : 10px;
+	padding-top : 10px;
+}
+
+.task-attachment-filegroup {
+	border  : solid; 
+	border-width: 1px;
+	border-color : lightgray;
+}
+
+.newtask {
+	margin-top : 80px;	
+	padding-top : 10px;
+	
+	border-top : solid; 
+	border-width: 1px;
+	border-color : lightgray;
+ }
+ 
+ .edittask {
+ 	padding-top: 30px; 
+ }
+ 
+ .right-column {
+ 	padding-left: 30px; 
+ }
+ 
+ .list-header {
+	background-color: lightgray; 
+}
+
+.attachments-add-files-drop {
+	background-color: #A9F5A9;
+}
+
+.project-files {
+	margin-top: 20px; 
+}
+
+.filegroup-description {
+	margin-bottom: 10px; 
+	border-bottom  : solid; 
+	border-width: 2px;
+	border-color : darkgray;
+}
+
+.task-attachment-files {
+	border-bottom  : solid; 
+	border-width: 1px;
+	border-color : lightgray;
+}
+
+.add-filegroup {
+	margin-bottom: 10px; 
+}
+
+.links {
+	margin-top: 15px; 
+}
+
+.comment {
+	margin-top: 15px; 
+}
