@@ -25,7 +25,7 @@ var html_files = require('./routes/html_files');
 var logger = new (winston.Logger)({ 
 		transports: [ 
 		  new (winston.transports.Console)( {colorize: 'true'}) ,
-		  new (winston.transports.File)({ filename: 'monitor.log' })
+		  new (winston.transports.File)({ filename: 'pm.log' })
 ]});
 
 // app.use(express.logger());  
