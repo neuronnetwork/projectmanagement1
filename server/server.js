@@ -314,7 +314,7 @@ app.post("/newproject",  auth,  function(req, res) {
  
  	 	console.log(' in group.then projecttitle: ' +  projecttitle); 
  	 	
- 	    var group2 = Q.all([insertNewProject((user_uid+1)*project_uid, project_uid, user_uid, databaseMonitor),
+ 	    var group2 = Q.all([insertNewProject(project_uid, projecttitle, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid1, etherpadName1, project_uid, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid2, etherpadName2, project_uid, user_uid, databaseMonitor)]);  
  	     group2 = Q.all([ ]);  
