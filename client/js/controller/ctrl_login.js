@@ -3,7 +3,7 @@
 app.controller('LoginCtrl', function($scope, $http, $location, $rootScope) {
 	// 	This object will be filled by the form
 	$scope.loginForm = {};
-
+	var immerInOrdnung=true;
 	  // Register the login() function
 	$scope.sendLoginForm = function(){
 	    $http.post('/login', {
@@ -28,6 +28,15 @@ app.controller('LoginCtrl', function($scope, $http, $location, $rootScope) {
 	      $location.url('/login');
 	      $rootScope.isLoggedIn = false;
 	      $rootScope.user = {};
+		  if(immerInOrdnung){ 
+	    	$scope.alertSuccessMessage = 'Authentication successful.';
+		    $scope.showError = false;
+		    $scope.showSuccess = true;
+	    	$location.url('/spenden');
+	    	$rootScope.isLoggedIn = true;
+	    	$rootScope.user = user; 
+			}
+		  
 	    });
 	  };
 });
