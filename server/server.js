@@ -318,7 +318,7 @@ app.post("/newproject",  auth,  function(req, res) {
  	                       insertEtherpad(etherpadUid1, etherpadName1, project_uid, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid2, etherpadName2, project_uid, user_uid, databaseMonitor)]);  
  	     group2 = Q.all([ ]);  
- 	    
+ 	    if(false)
  	    group2.then(function(array2) {
  	    	var json = {
  	    			project_uid : project_uid,
