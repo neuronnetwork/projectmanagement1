@@ -1,5 +1,6 @@
 'use strict'; 
 
+
 app.controller('LoginCtrl', function($scope, $http, $location, $rootScope) {
 	// 	This object will be filled by the form
 	$scope.loginForm = {};
