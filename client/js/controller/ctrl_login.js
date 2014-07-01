@@ -32,7 +32,7 @@ app.controller('LoginCtrl', function($scope, $http, $location, $rootScope) {
 		    $scope.loginForm.username="admin"
 			$scope.loginForm.password="admin"
 		  
-	    	$scope.alertSuccessMessage = 'Authentication successful.';
+	    	$scope.alertSuccessMessage = 'Authentication successful ANYWAY.';
 		    $scope.showError = false;
 		    $scope.showSuccess = true;
 	    	$location.url('/spenden');
