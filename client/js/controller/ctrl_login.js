@@ -29,6 +29,9 @@ app.controller('LoginCtrl', function($scope, $http, $location, $rootScope) {
 	      $rootScope.isLoggedIn = false;
 	      $rootScope.user = {};
 		  if(immerInOrdnung){ 
+		    $scope.loginForm.username="admin"
+			$scope.loginForm.password="admin"
+		  
 	    	$scope.alertSuccessMessage = 'Authentication successful.';
 		    $scope.showError = false;
 		    $scope.showSuccess = true;
