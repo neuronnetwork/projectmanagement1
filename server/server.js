@@ -1,5 +1,6 @@
 'use strict';
 
+ 
 
 var winston= require("winston");
 var express = require("express");
@@ -265,6 +266,7 @@ var getUniqueIds = function (tables, db) {
 
 
 
+
 var insertNewProject = function (uid, projecttitle, user_uid, db) {
 	var deferred = Q.defer();
 	console.log('in insertNewProject');	
@@ -308,7 +310,11 @@ app.post("/newproject",  auth,  function(req, res) {
 	 
  	// to the server is loggedin. we can't rely on the client, as a the login could be faked by inserting
  	// javascript code in the browser console (firebug) 
-	// OK!
+
+	 
+ 	 
+	
+ 	
  	if(user_uid===undefined){//SONST undefined
 		//console.log('SCHAU MAL?!!!! req.body.user_uid: ' +  user_uid); 
 
@@ -354,21 +360,22 @@ app.post("/newproject",  auth,  function(req, res) {
 		}
 	}
 	
-	
-	
- 	if(false)  
- 	      user_uid=  540546;
-				 
- 	console.log('req.body.user_uid: ' + req.body.user_uid);
+
+
+
+
+
+
 
  	var projecttitle = req.body.projecttitle; 
  	var etherpadName1 = req.body.etherpadTopics; 
  	var etherpadName2 = req.body.etherpadProtocol;
- 	var user_uid = req.body.user_uid;
 
-				 
-	
- 	console.log('etherpadName1: ' + etherpadName1);
+  
+
+
+
+  	console.log('etherpadName1: ' + etherpadName1);
  	console.log('etherpadName2: ' +etherpadName2);
 
 	console.log('newproject   req.body: ' + JSON.stringify(req.body));
@@ -384,12 +391,14 @@ app.post("/newproject",  auth,  function(req, res) {
  	// get 3 new ids for the project and 2 etherpads 
  	 
 
+  	
   	// TODO Jean:   replace this Q.all call with a call to the new getUniqueIds function
   	// by passing a array of the table names to the function 
   	// this is a speed improvement: by calling getUniqueId three times
   	// we execute three database write statements.
   	// if we change this to getUniqueIds, we achieve the same with one database write statement
-  
+
+  	
 	var group = Q.all([getUniqueId(tableProjects,  databaseMonitor), 
 	                    getUniqueId(tableEtherpads,  databaseMonitor),
 	                    getUniqueId(tableEtherpads,  databaseMonitor)]);
@@ -397,14 +406,16 @@ app.post("/newproject",  auth,  function(req, res) {
  	group.then(function(array) {
  	    var project_uid = array[0][0].insertId; // result of promise1
  	    var etherpadUid1 = array[1][0].insertId; // result of promise2
- 	    var etherpadUid2 = array[2][0].insertId; // result of promise2
- 
- 	 	console.log(' in group.then projecttitle: ' +  projecttitle); 
- 	 	
- 	    var group2 = Q.all([insertNewProject(project_uid, projecttitle, user_uid, databaseMonitor),
+
+
+ 	    var etherpadUid2 = array[2][0].insertId; // result of promise2 
+ 	 	console.log(' in group.then projecttitle: ' +  projecttitle);  
+
+		var group2 = Q.all([insertNewProject(project_uid, projecttitle, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid1, etherpadName1, project_uid, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid2, etherpadName2, project_uid, user_uid, databaseMonitor)]);  
- 	    
+
+ 	     
  	    group2.then(function(array2) {
  	    	var json = {
  	    			project_uid : project_uid,
