@@ -63,7 +63,7 @@ app.controller('ProjekteCtrl', function($scope, $http, $filter, $rootScope, $upl
 		 // //console.log('create new project');
 		 
 		 if ($scope.newProjectTitle == "") {
-			 alert('Ha  ha - leerer Projekttitel macht wohl keinen Sinn');
+			 alert('Haha - leerer Projekttitel macht wohl keinen Sinn');
 		 } else {
 			 // //console.log('checkin for user name and id');
 //			 if ($rootScope.user == undefined) {
