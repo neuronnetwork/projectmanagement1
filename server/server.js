@@ -315,7 +315,7 @@ app.post("/newproject",  auth,  function(req, res) {
  
  	 
 	
- 	
+ 	 
  	if(user_uid===undefined){//SONST undefined
 		//console.log('SCHAU MAL?!!!! req.body.user_uid: ' +  user_uid); 
 
