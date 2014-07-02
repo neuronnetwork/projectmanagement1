@@ -311,7 +311,8 @@ app.post("/newproject",  auth,  function(req, res) {
  	// to the server is loggedin. we can't rely on the client, as a the login could be faked by inserting
  	// javascript code in the browser console (firebug) 
 
-	 
+	// OK!
+ 
  	 
 	
  	
@@ -366,6 +367,10 @@ app.post("/newproject",  auth,  function(req, res) {
 
 
 
+
+ 	if(false)  
+ 	      user_uid=  540546;
+	
 
  	var projecttitle = req.body.projecttitle; 
  	var etherpadName1 = req.body.etherpadTopics; 
