@@ -298,6 +298,17 @@ app.post("/newproject",  auth,  function(req, res) {
  	console.log("matching request function POST  '/newproject'");
  	console.log('req.body.projecttitle: ' + req.body.projecttitle);
 
+
+ 	var user_uid = req.body.user_uid; 
+	
+ 	console.log("++++++++++++++++++");
+ 	console.log(req  );
+ 	console.log(req.body );
+ 	var idIstSchonBenutzt=true;
+	 
+ 	// to the server is loggedin. we can't rely on the client, as a the login could be faked by inserting
+ 	// javascript code in the browser console (firebug) 
+	// OK!
  	if(user_uid===undefined){//SONST undefined
 		//console.log('SCHAU MAL?!!!! req.body.user_uid: ' +  user_uid); 
 
