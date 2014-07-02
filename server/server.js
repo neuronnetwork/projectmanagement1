@@ -1,10 +1,5 @@
 'use strict';
 
-
-
-//trying git...
-
-var winston= require("winston");
 var express = require("express");
 var http = require("http");
 var app = express();
@@ -252,6 +247,22 @@ var getUniqueId = function (table, db) {
 	return deferred.promise;
 };
 
+
+
+// TODO: Jean: this function should take as input an array of table names 
+// and return the first unique id which was inserted (the last id can be calculated by adding the length
+// of the array
+var getUniqueIds = function (tables, db) {
+	
+};
+
+
+
+
+
+
+
+
 var insertNewProject = function (uid, projecttitle, user_uid, db) {
 	var deferred = Q.defer();
 	console.log('in insertNewProject');	
@@ -284,6 +295,57 @@ var insertEtherpad  = function (uid, etherpadName, project_uid, user_uid, db) {
 app.post("/newproject",  auth,  function(req, res) {
  	console.log("matching request function POST  '/newproject'");
  	console.log('req.body.projecttitle: ' + req.body.projecttitle);
+
+ 	if(user_uid===undefined){//SONST undefined
+		//console.log('SCHAU MAL?!!!! req.body.user_uid: ' +  user_uid); 
+
+		{//herstellt eine zufällige falsche neue id	 
+			var trials = 0;  
+			
+			for(;trials<100;trials++)  //doesn´t use Q
+				if (idIstSchonBenutzt){
+				user_uid=Math.floor(Math.random()*10000);  //zufällige  
+				{ // für den Fall, wenn diese uid schon existiert. Er ist sehr sehr selten.
+					 var strQuery  = "SELECT * from projects  WHERE user_uid =  "+ user_uid+" ;";
+					  //console.log(strQuery);				 
+					 var databaseMonitor = mysql.createConnection({
+							  host     : config.databaseMonitor.host,
+							  user     : config.databaseMonitor.username,
+							  password : config.databaseMonitor.password,
+							  database : config.databaseMonitor.database,
+							  debug		: false
+					});
+					databaseMonitor.query( strQuery, function(err, rows ){
+								if(err)	{
+									console.log("ERR="+ err.message);
+									idIstSchonBenutzt=false;//Ich gebe auf!
+									user_uid=-1;
+									//console.log( "Ich gebe auf!");
+								}else{
+								idIstSchonBenutzt=(rows.length!==0);	
+								console.log(user_uid+"   hier  "+rows.length+"  "+idIstSchonBenutzt);
+							
+								for(var i=0;i<rows.length;i++)
+									console.log( "already : Zeile= "+rows[i].project_title+" "+rows[i].user_uid );
+								}
+								});	
+					databaseMonitor.end(function(err){ 
+							});
+					}
+					}
+			if(trials>100){  
+							console.log( "trials>=100 !!!!!");
+							user_uid=-1;
+							}
+				
+		}
+	}
+	
+	
+	
+ 	if(false)  
+ 	      user_uid=  540546;
+				 
  	console.log('req.body.user_uid: ' + req.body.user_uid);
 
  	var projecttitle = req.body.projecttitle; 
@@ -291,6 +353,8 @@ app.post("/newproject",  auth,  function(req, res) {
  	var etherpadName2 = req.body.etherpadProtocol;
  	var user_uid = req.body.user_uid;
 
+				 
+	
  	console.log('etherpadName1: ' + etherpadName1);
  	console.log('etherpadName2: ' +etherpadName2);
 
@@ -306,6 +370,13 @@ app.post("/newproject",  auth,  function(req, res) {
  	
  	// get 3 new ids for the project and 2 etherpads 
  	 
+
+  	// TODO Jean:   replace this Q.all call with a call to the new getUniqueIds function
+  	// by passing a array of the table names to the function 
+  	// this is a speed improvement: by calling getUniqueId three times
+  	// we execute three database write statements.
+  	// if we change this to getUniqueIds, we achieve the same with one database write statement
+  
 	var group = Q.all([getUniqueId(tableProjects,  databaseMonitor), 
 	                    getUniqueId(tableEtherpads,  databaseMonitor),
 	                    getUniqueId(tableEtherpads,  databaseMonitor)]);
@@ -317,12 +388,10 @@ app.post("/newproject",  auth,  function(req, res) {
  
  	 	console.log(' in group.then projecttitle: ' +  projecttitle); 
  	 	
- 	    
-		var group2 = Q.all([insertNewProject(project_uid, projecttitle, user_uid, databaseMonitor),
+ 	    var group2 = Q.all([insertNewProject(project_uid, projecttitle, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid1, etherpadName1, project_uid, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid2, etherpadName2, project_uid, user_uid, databaseMonitor)]);  
- 	     group2 = Q.all([ ]);  
- 	    if(false)
+ 	    
  	    group2.then(function(array2) {
  	    	var json = {
  	    			project_uid : project_uid,
