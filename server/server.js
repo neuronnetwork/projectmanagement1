@@ -430,8 +430,12 @@ app.post("/newproject",  auth,  function(req, res) {
  	    var etherpadUid2 = array[2][0].insertId; // result of promise2
  
  	 	console.log(' in group.then projecttitle: ' +  projecttitle); 
-
- 	    var group2 = Q.all([insertNewProject(1,          "georg",     user_uid, databaseMonitor), 	
+		//BEGINN von DEBUGZONE 
+			user_uid=1; 
+			var EINEUEBERSCHRIFT= "georg";
+		//ENDE von DEBUGZONE 
+		 
+ 	    var group2 = Q.all([insertNewProject(project_uid,EINEUEBERSCHRIFT,     user_uid, databaseMonitor), 	
  	                       insertEtherpad(etherpadUid1, etherpadName1, project_uid, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid2, etherpadName2, project_uid, user_uid, databaseMonitor)]);  
 
