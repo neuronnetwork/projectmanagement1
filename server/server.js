@@ -1,11 +1,27 @@
+//BUGS
+// Das neue Projekt ist "a dummy project", das nicht mit dem Rest vom Kode lanfristifunktionniert.  
+
+
+// TODOS 
+
+// die DEBUGZONE bei der Endkorrektur ersetzen, sodaß das neue angelegte Projekt gut funktionnieren mit dem Rest, nachdem ich überall ihn schaue.
+
+
+ 
+
+
+
+
+
 'use strict';
+
+
+
 
 var express = require("express");
 var http = require("http");
 var app = express();
 var fs = require('fs');
-//var path = require('path');
-//var child_process = require('child_process') ;
 var winston   = require('winston');
 var reqLogger = require('express-request-logger');
 var passport = require('passport'); 
@@ -250,6 +266,23 @@ var getUniqueId = function (table, db) {
 	return deferred.promise;
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var insertNewProject = function (uid, projecttitle, user_uid, db) {
 	var deferred = Q.defer();
 	console.log('in insertNewProject');	
@@ -282,11 +315,85 @@ var insertEtherpad  = function (uid, etherpadName, project_uid, user_uid, db) {
 app.post("/newproject",  auth,  function(req, res) {
  	console.log("matching request function POST  '/newproject'");
  	console.log('req.body.projecttitle: ' + req.body.projecttitle);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  	console.log('req.body.user_uid: ' + req.body.user_uid);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  	var projecttitle = req.body.projecttitle; 
  	var etherpadName1 = req.body.etherpadTopics; 
  	var etherpadName2 = req.body.etherpadProtocol;
+
+
+
+
  	var user_uid = req.body.user_uid;
 
  	console.log('etherpadName1: ' + etherpadName1);
@@ -304,6 +411,15 @@ app.post("/newproject",  auth,  function(req, res) {
  	
  	// get 3 new ids for the project and 2 etherpads 
  	 
+
+
+
+
+
+
+
+
+
 	var group = Q.all([getUniqueId(tableProjects,  databaseMonitor), 
 	                    getUniqueId(tableEtherpads,  databaseMonitor),
 	                    getUniqueId(tableEtherpads,  databaseMonitor)]);
@@ -311,13 +427,22 @@ app.post("/newproject",  auth,  function(req, res) {
  	group.then(function(array) {
  	    var project_uid = array[0][0].insertId; // result of promise1
  	    var etherpadUid1 = array[1][0].insertId; // result of promise2
+
+
+
  	    var etherpadUid2 = array[2][0].insertId; // result of promise2
  
  	 	console.log(' in group.then projecttitle: ' +  projecttitle); 
- 	 	
- 	    var group2 = Q.all([insertNewProject(projectUid, project_uid, user_uid, databaseMonitor),
+		//BEGINN von DEBUGZONE 
+			user_uid=1; 
+			var EINEUEBERSCHRIFT= "georg";
+		//ENDE von DEBUGZONE 
+		 
+ 	    var group2 = Q.all([insertNewProject(project_uid, EINEUEBERSCHRIFT, user_uid, databaseMonitor), 	
  	                       insertEtherpad(etherpadUid1, etherpadName1, project_uid, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid2, etherpadName2, project_uid, user_uid, databaseMonitor)]);  
+
+
  	    
  	    group2.then(function(array2) {
  	    	var json = {
