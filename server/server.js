@@ -1,4 +1,18 @@
+//BUGS
+// Hier irgendwas verursacht "Fehler 500" 
+// Nennen wir dieses irgendwas "PROBLEM1"! 
+// wegen PROBLEM1 u.a. kann man kein neues Projekt anlegen 
+
+
+// TODOS
+// * PROBLEM1 finden 
+// * PROBLEM1 korrigieren, bis die Moeglichkeit ein neues Projekt anzulegen.  
+// * So machen, daß das neue angelegte Projekt mit gut funktionnieren mit dem ganzen Rest von Kode, nachdem ich überall ihn schaue.
+
 'use strict';
+
+
+
 
 var express = require("express");
 var http = require("http");
@@ -248,6 +262,23 @@ var getUniqueId = function (table, db) {
 	return deferred.promise;
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var insertNewProject = function (uid, projecttitle, user_uid, db) {
 	var deferred = Q.defer();
 	console.log('in insertNewProject');	
@@ -280,11 +311,85 @@ var insertEtherpad  = function (uid, etherpadName, project_uid, user_uid, db) {
 app.post("/newproject",  auth,  function(req, res) {
  	console.log("matching request function POST  '/newproject'");
  	console.log('req.body.projecttitle: ' + req.body.projecttitle);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  	console.log('req.body.user_uid: ' + req.body.user_uid);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  	var projecttitle = req.body.projecttitle; 
  	var etherpadName1 = req.body.etherpadTopics; 
  	var etherpadName2 = req.body.etherpadProtocol;
+
+
+
+
  	var user_uid = req.body.user_uid;
 
  	console.log('etherpadName1: ' + etherpadName1);
@@ -302,6 +407,15 @@ app.post("/newproject",  auth,  function(req, res) {
  	
  	// get 3 new ids for the project and 2 etherpads 
  	 
+
+
+
+
+
+
+
+
+
 	var group = Q.all([getUniqueId(tableProjects,  databaseMonitor), 
 	                    getUniqueId(tableEtherpads,  databaseMonitor),
 	                    getUniqueId(tableEtherpads,  databaseMonitor)]);
@@ -309,13 +423,19 @@ app.post("/newproject",  auth,  function(req, res) {
  	group.then(function(array) {
  	    var project_uid = array[0][0].insertId; // result of promise1
  	    var etherpadUid1 = array[1][0].insertId; // result of promise2
+
+
+
  	    var etherpadUid2 = array[2][0].insertId; // result of promise2
  
  	 	console.log(' in group.then projecttitle: ' +  projecttitle); 
+
  	 	
  	    var group2 = Q.all([insertNewProject(projectUid, project_uid, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid1, etherpadName1, project_uid, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid2, etherpadName2, project_uid, user_uid, databaseMonitor)]);  
+
+
  	    
  	    group2.then(function(array2) {
  	    	var json = {
