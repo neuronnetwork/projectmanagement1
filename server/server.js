@@ -4,13 +4,10 @@
 // wegen PROBLEM1 u.a. kann man kein neues Projekt anlegen 
 
 
-// TODOS
-//   PROBLEM1 gefunden -> 
-  // insertNewProject(projectUid, project_uid, user_uid, databaseMonitor) 
-  // zuordnet nicht die Deklaration:
-  //  var insertNewProject = function (uid, projecttitle, user_uid, db)  
-  
-// * PROBLEM1 korrigieren, bis die Moeglichkeit ein neues Projekt anzulegen.  
+// TODOS 
+// * PROBLEM1 korrigieret
+//   -->> man kann erneut ein neues Projekt anzulegen.  
+
 // * So machen, daß das neue angelegte Projekt mit gut funktionnieren mit dem ganzen Rest von Kode, nachdem ich überall ihn schaue.
 
 'use strict';
