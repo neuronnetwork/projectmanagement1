@@ -5,8 +5,8 @@
 
 
 // TODOS 
-// * PROBLEM1 korrigieret
-//   -->> man kann erneut ein neues Projekt anzulegen.  
+// * PROBLEM1 korrigiert
+//     ---> man kann erneut ein neues Projekt anzulegen.  
 
 // * So machen, daß das neue angelegte Projekt mit gut funktionnieren mit dem ganzen Rest von Kode, nachdem ich überall ihn schaue.
 
@@ -431,8 +431,7 @@ app.post("/newproject",  auth,  function(req, res) {
  
  	 	console.log(' in group.then projecttitle: ' +  projecttitle); 
 
- 	 	
- 	    var group2 = Q.all([insertNewProject(projectUid, project_uid, user_uid, databaseMonitor),
+ 	    var group2 = Q.all([insertNewProject(1,          "georg",     user_uid, databaseMonitor), 	
  	                       insertEtherpad(etherpadUid1, etherpadName1, project_uid, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid2, etherpadName2, project_uid, user_uid, databaseMonitor)]);  
 
