@@ -432,7 +432,7 @@ app.post("/newproject",  auth,  function(req, res) {
  	 	console.log(' in group.then projecttitle: ' +  projecttitle); 
 		//BEGINN von DEBUGZONE 
 			user_uid=1; 
-			var EINEUEBERSCHRIFT= "der Titel";
+			var EINEUEBERSCHRIFT= "georg";
 		//ENDE von DEBUGZONE 
 		 
  	    var group2 = Q.all([insertNewProject(project_uid, EINEUEBERSCHRIFT, user_uid, databaseMonitor), 	
