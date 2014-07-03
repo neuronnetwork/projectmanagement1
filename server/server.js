@@ -4,8 +4,7 @@ var express = require("express");
 var http = require("http");
 var app = express();
 var fs = require('fs');
-//var path = require('path');
-//var child_process = require('child_process') ;
+var winston   = require('winston');
 var reqLogger = require('express-request-logger');
 var passport = require('passport'); 
 var LocalStrategy = require('passport-local').Strategy;
@@ -310,7 +309,7 @@ app.post("/newproject",  auth,  function(req, res) {
  	group.then(function(array) {
  	    var project_uid = array[0][0].insertId; // result of promise1
  	    var etherpadUid1 = array[1][0].insertId; // result of promise2
- 	    var etherpadUid2 = array[2][0].insertId; // result of promise2
+		var etherpadUid2 = array[2][0].insertId; // result of promise2
  
  	 	console.log(' in group.then projecttitle: ' +  projecttitle); 
  	 	
