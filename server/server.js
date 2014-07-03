@@ -6,7 +6,6 @@ var app = express();
 var fs = require('fs');
 //var path = require('path');
 //var child_process = require('child_process') ;
-var winston   = require('winston');
 var reqLogger = require('express-request-logger');
 var passport = require('passport'); 
 var LocalStrategy = require('passport-local').Strategy;
