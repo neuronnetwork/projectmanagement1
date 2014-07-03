@@ -432,10 +432,10 @@ app.post("/newproject",  auth,  function(req, res) {
  	 	console.log(' in group.then projecttitle: ' +  projecttitle); 
 		//BEGINN von DEBUGZONE 
 			user_uid=1; 
-			var EINEUEBERSCHRIFT= "georg";
+			var EINEUEBERSCHRIFT= "der Titel";
 		//ENDE von DEBUGZONE 
 		 
- 	    var group2 = Q.all([insertNewProject(project_uid,EINEUEBERSCHRIFT,     user_uid, databaseMonitor), 	
+ 	    var group2 = Q.all([insertNewProject(project_uid, EINEUEBERSCHRIFT, user_uid, databaseMonitor), 	
  	                       insertEtherpad(etherpadUid1, etherpadName1, project_uid, user_uid, databaseMonitor),
  	                       insertEtherpad(etherpadUid2, etherpadName2, project_uid, user_uid, databaseMonitor)]);  
 
