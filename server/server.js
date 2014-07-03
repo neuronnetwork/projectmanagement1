@@ -1,14 +1,17 @@
 //BUGS
-// Hier irgendwas verursacht "Fehler 500" 
-// Nennen wir dieses irgendwas "PROBLEM1"! 
-// wegen PROBLEM1 u.a. kann man kein neues Projekt anlegen 
+// Das neue Projekt ist "a dummy project", das nicht mit dem Rest vom Kode lanfristifunktionniert.  
 
 
 // TODOS 
-// * PROBLEM1 korrigiert
-//     ---> man kann erneut ein neues Projekt anzulegen.  
 
-// * So machen, daß das neue angelegte Projekt mit gut funktionnieren mit dem ganzen Rest von Kode, nachdem ich überall ihn schaue.
+// die DEBUGZONE bei der Endkorrektur ersetzen, sodaß das neue angelegte Projekt gut funktionnieren mit dem Rest, nachdem ich überall ihn schaue.
+
+
+ 
+
+
+
+
 
 'use strict';
 
