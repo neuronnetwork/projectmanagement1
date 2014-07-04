@@ -1,0 +1,36 @@
+ 
+	
+		<div class="row"  ng-controller=LoginCtrl>
+						<div class="col-sm-4">
+				
+						    		<form class="form-horizontal" role="form" class="col-sm-4">
+								 
+										    <div class="form-group">
+										  		<div >
+											          <input ng-required="true"   class="form-control" id="inputfrom" ng-model="loginForm.username"  placeholder="who are you?">
+											    </div>							  
+										  </div>
+										  
+
+										  <div class="form-group">
+										  		<div >
+											          <input type="password" ng-required="true"   class="form-control" id="inputfrom" ng-model="loginForm.password"  placeholder="what's your secret">
+											    </div>							  
+										  </div>
+											
+											
+											<div class="form-group">
+											    <div  >
+											      <button type="submit"  ng-click="sendLoginForm()" class="btn btn-primary">login</button>
+											    </div>
+										  	</div>
+											
+									</form>
+									
+									<div ng-hide="!showError" class="alert alert-danger">{{alertErrorMessage}}</div>
+									<div ng-hide="!showSuccess" class="alert alert-success">{{alertSuccessMessage}}</div>
+						</div>
+		 
+		</div>
+      
+ 

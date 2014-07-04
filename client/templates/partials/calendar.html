@@ -1,0 +1,80 @@
+<div ng-controller=CalendarCtrl>
+	<div class="row" >
+		<tabs>
+	 		<pane title="Kalendar">
+	 			<div class="row">			 
+					<div class="col-lg-12">
+ 					    <form class="form-horizontal calendar-filter-all" role="form"  >
+ 					    	<div class="col-lg-4">
+								<div class="form-group">
+									<input  class="form-control"   ng-model="filterAllEntries"  placeholder="alles filtern"    >
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="row">			 
+					<div class="col-lg-3">
+ 					    <form class="form-horizontal" role="form"  > 
+ 					    	<div class="form-group">
+						      	<div class="checkbox">
+						        	<label>
+						          		<input type="checkbox" ng-model="showProjectsInCalendar"> Projekte anzeigen
+						       		</label>
+						     	</div>
+							</div>
+							<div ng-show="showProjectsInCalendar">
+								<div class="form-group">
+							    	<div class="form-group">
+										<input  class="form-control"    ng-model="filterProjects"  placeholder="Projekte filtern"    >
+									</div>
+						 		</div>  
+							</div>
+				 
+						</form>
+					</div>  
+					
+					<div class="col-lg-offset-1 col-lg-4">
+ 					    <form class="form-horizontal" role="form"  > 
+ 					    	<div class="form-group">
+						      	<div class="checkbox">
+						        	<label>
+						          		<input type="checkbox" ng-model="showDifferentAppointmentsInCalendar"> Andere Termine anzeigen
+						       		</label>
+						     	</div>
+							</div>
+							<div ng-show="showDifferentAppointmentsInCalendar">
+								<div class="form-group">
+							    	<div class="form-group">
+										<input  class="form-control" ng-model="filterAppointments"  placeholder="Andere Termine filtern"    >
+									</div>
+						 		</div>  
+							</div> 
+						</form>
+					</div> 	      	 
+				</div>
+				<div class="row">			 
+					<div class="col-lg-12" style="height: 800px; min-height: 800px;">
+				
+			<!-- 			<grg-calendar   data="calendarData" style="height: 800px; min-height: 800px;">
+							<div class="chartArea"></div>
+						</grg-calendar> -->
+						
+						<grg-calendar  class="chartArea"  data="calendarData" style="height: 800px; min-height: 800px;">
+						</grg-calendar>
+					</div>
+				</div>
+				
+				
+			</pane>
+			
+			
+			<pane title="Andere Termine">
+					<h4>Alle Termin</h4>
+					
+					<h4>Termingruppen</h4>
+					 			    	 
+ 			</pane>
+			
+      
+ 

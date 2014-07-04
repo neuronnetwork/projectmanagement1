@@ -1,0 +1,328 @@
+<div ng-controller="ProjekteCtrl">
+	<div class="col-lg-3 light-grey">
+		<div>
+			<h3>Projekte <span ng-click="OpenCreateNewProjectDialog()" class="pull-right glyphicon glyphicon-plus"></span></h3>
+		</div>
+	   	
+	  	<br/>
+		<form role="form" class="form-inline" >
+			<div class="form-group">
+ 				<div>
+					<input type="search" class="form-control  input-sm" ng-model="filterProjectname"  placeholder="Projekt filtern"> 
+				</div> 	
+			</div>
+		</form>
+		<br/>
+		<hr>
+		<div ng-repeat="project in allProjects | filter:filterProjectname">
+			<div class="project-list"><a ng-click="selectProject($index)">{{project.projecttitle}}</a></div>			
+		</div>			
+	</div>
+		   		  
+	<div class="col-lg-9 right-column">
+		<div ng-show="showProjectEditDialog">
+			<h3>{{selectedProject.projecttitle}} </h3>
+			<br/> 
+			<tabs class="etherpad">
+			<pane title="ToDos">
+  						<div class="row vertikalabstand-tab">
+			 				<div class="col-lg-5">
+ 								<form role="form">
+									  <div class="form-group">
+											<label >ToDo filtern</label>
+											<input type="text" class="form-control input-sm"   ng-model="taskFilter"  placeholder="Filtern" >
+ 									  </div> 
+								</form>
+ 							</div> 
+						</div> 
+						<h3>Alle ToDos zu diesem Projekt</h3>
+						<div class="row list-header"  >
+			 				<div class="col-lg-12 task-list">
+			 					<div class="row task-header">
+			 						<div class="col-lg-4">
+			 							ToDo			 							 	
+			 						</div>
+			 						<div class="col-lg-2">
+			 							Status
+									</div>
+									<div class="col-lg-1">
+			 							<span>Besitzer</span> 
+			 						</div>			 						 			 						
+			 					</div>
+			 				</div>
+			 			</div>
+						<div class="row" ng-repeat="task in selectedProject.tasks | filter:taskFilter">
+			 				<div class="col-lg-12 task-list">
+			 					<div class="row task-header">
+			 						<div class="col-lg-4">
+			 							{{task.task}} 
+			 							<div class="pull-right">
+			 								<span class="glyphicon glyphicon-edit" ng-click="task.hideEditTask=!task.hideEditTask"> </span>
+				 						</div> 	
+			 						</div>
+			 						<div class="col-lg-2">
+			 							<span ng-show="task.statusDone" class="glyphicon glyphicon-check" ng-click="changeTaskStatus(task.uid, false )">erledigt</span> 
+			 							<span ng-show="!task.statusDone" class="glyphicon glyphicon-unchecked" ng-click="changeTaskStatus(task.uid, true )">offen</span>
+									</div>
+									<div class="col-lg-1">
+			 							<span>{{task.firstname}} </span> 
+			 						</div> 
+			 						<div class="col-lg-4 pull-right">
+			 							<span class="glyphicon glyphicon-picture" ng-click="task.hideAttachments=!task.hideAttachments"></span> 
+				 						<span class="glyphicon glyphicon-link" ng-click="task.hideLinks=!task.hideLinks"> </span>
+										<span class="glyphicon glyphicon-comment" ng-click="task.hideComment =!task.hideComment "> </span>
+ 				 						<span ng-show="task.hideAllDetails" class="glyphicon glyphicon-arrow-down" ng-click="switchAllDetails(task)"> </span> 
+			 							<span ng-show="!task.hideAllDetails" class="glyphicon glyphicon-arrow-up" ng-click="switchAllDetails(task)"> </span>
+				 					</div> 			 						
+			 					</div>  
+			 				</div> 
+			 				
+			 				
+			 				<!--  edit task  -->
+			 				
+			 				<div ng-class="{taskhideattachments: task.hideEditTask}" >
+			 					<div class="row edittask">
+			 						<div class="col-lg-2 ">
+			 							ToDo bearbeiten 
+			 						</div>	
+			 						<div class="col-lg-5">
+			 							<form role="form">
+			 							 	<div class="form-group">
+												<label >Beschreibung *</label>
+ 			 									<input type="text" class="form-control input-sm"  ng-model="task.task" placeholder="Taskbeschreibung" > 
+ 											</div>
+											<div class="form-group">
+												<label >Typ *</label>
+												<select class="form-control input-sm" ng-model="task.type" placeholder="Typ" ng-options="c.humanreadable for c in taskTypes"></select>
+											</div>
+											<div class="form-group">
+												<label>Datum (am/von) *</label>
+												<input type="text" class="form-control"  ui-date="dateOptions" ng-required="true" ng-model="task.start"  placeholder="am/von"    >
+											</div>
+ 			 								<div class="form-group">
+												<label>Datum (bis)</label>
+												<input type="text"   class="form-control"  ui-date="dateOptions" ng-required="false" ng-model="task.end"  placeholder="bis"    >
+ 			 								</div>
+ 			 								<div class="form-group">
+												<button type="button" class="btn btn-primary btn-sm" ng-click="saveTask(task.uid)">speichern</button>									 		 
+		 									</div> 
+										</form>
+			 						</div>	
+			 					</div>
+					 		</div>
+			 				
+			 				
+			 				
+			 				
+			 				
+			 				
+			 				
+			 				<!--  list with file attachments -->
+			 				
+			 				<div ng-class="{taskhideattachments: task.hideAttachments}" >
+			 					<div class="row">
+			 						<div class="col-lg-offset-1 col-lg-4 add-filegroup">
+			 							Dateigruppe 
+			 							<div class="pull-right">
+			 								<span ng-click="task.hideAddFileGroup=!task.hideAddFileGroup" class="glyphicon glyphicon-plus"></span> 
+				 						</div> 	
+			 						</div>	
+			 					</div>
+			 					<div class="row  " ng-repeat="fileGroup in task.fileGroups">
+			 					 	<div class="col-lg-offset-1 col-lg-12 task-attachment-filegroup"  >
+ 										<div class=" col-lg-7">
+											<div class="filegroup-description">
+												{{fileGroup.description}}
+												<div class="pull-right">
+					 								<span ng-click="deleteFilegroup(task.uid, fileGroup.uid)" class="glyphicon glyphicon-trash"> </span> 
+						 						</div>
+											</div>
+											 
+					 						<div class="row" ng-repeat="file in fileGroup.files">
+						 				 		<div class="task-attachment-files col-lg-11">
+													<a ng-click="downloadFile(file)">{{file.filename}}</a> 
+												</div>	  
+												<div class="task-attachment-files col-lg-1">
+													<span ng-click="deleteFileFromGroup(task.uid, fileGroup.uid, file.uid)" class="glyphicon glyphicon-trash"> </span> 
+												</div>	   
+											</div>
+ 										</div>
+					 					<div class="col-lg-4">
+					 						<div class="attachments-add-files" ng-file-drop="addFilesToFileGroup($files, fileGroup.uid, task.uid)" ng-file-drag-over-class="attachments-add-files-drop"
+        										  ng-file-drop-available="dropSupported=true"	ng-show="dropSupported" >Dateien hier mit Drag'n'drop ablegen</div>
+         			 					</div>									
+									</div>
+								</div>
+								
+								<!--  add new filegroup  -->
+								<div ng-class="{addnewfilegroup: task.hideAddFileGroup}" >
+				 					<div class="row">
+				 						<div class="col-lg-offset-1 col-lg-8">
+				 							<form role="form" class="form-inline " >
+												<div class="form-group">
+ 														<input type="text" class="form-control  input-sm" ng-model="newfileGroup.description"  placeholder="Bezeichnung"> 
+ 														<button type="button" class="btn btn-primary form-control btn-sm"   ng-click="createNewFileGroup(task.uid)" >Dateigruppe anlegen</button>
+  												</div>
+											</form>
+				 						</div>			 						
+									</div>
+						 		</div>
+					 		</div>
+					 		
+					 		
+					
+					
+					
+					 		
+			 				<!--  list with links  -->
+			 		
+ 			 				
+			 				<div ng-class="{taskhidelinks: task.hideLinks}" >
+			 					<div class="row links">
+			 						<div class="col-lg-offset-1 col-lg-4 link-description">
+			 							Links
+			 							<div class="pull-right">
+			 								<span ng-click="task.hideAddLink=!task.hideAddLink" class="glyphicon glyphicon-plus"></span> 
+				 						</div> 	
+			 						</div>	
+			 					</div>
+			 					<div class="row" ng-repeat="link in task.links">
+			 					 	<div class="col-lg-offset-1 col-lg-3 task-link"  >
+			 					 		<a href="{{link.url}}" target="_blank">{{link.linkname}}</a>											
+			 					 	</div>
+			 					 	<div class="col-lg-3">
+			 					 		<form role="form" class="form-inline " >
+											<div class="form-group">
+ 												<input type="text" class="form-control  input-sm" ng-model="link.url"> 
+ 											</div>
+										</form>											
+			 					 	</div>
+			 					 	<div class="col-lg-1">
+				 						<span ng-click="deleteLink(link.uid)" class="glyphicon glyphicon-trash"> </span> 
+			 					 	</div>
+								</div>
+								
+								<!--  add new link  -->
+								<div ng-class="{addnewlink: task.hideAddLink}" >
+				 					<div class="row">
+				 						<div class="col-lg-offset-1 col-lg-11">
+				 							<form role="form" class="form-inline " >
+												<div class="form-group">
+ 														<input type="text" class="form-control  input-sm" ng-model="newLink.url"  placeholder="URL"> 
+ 														<input type="text" class="form-control  input-sm" ng-model="newLink.linkname"  placeholder="Beschreibung"> 
+ 														<button type="button" class="btn btn-primary form-control btn-sm"   ng-click="addNewLink(task.uid)" >Link speichern</button>
+  												</div>
+											</form>
+				 						</div>			 						
+									</div>
+						 		</div>
+					 		</div> 
+ 			 			
+			 			
+			 				<!--  comment     -->
+			 		
+ 			 				
+			 				<div ng-class="{taskhidecomment: task.hideComment}" >
+			 					<div class="row comment">
+			 						<div class="col-lg-offset-1 col-lg-2 comment-description">
+			 							Anmerkungen:			 							
+			 						</div>	
+  			 					 	<div class="  col-lg-6">
+			 					 		<form role="form" class="form-inline" >
+											<div class="form-group">
+ 												<textarea  rows="12" cols="50" type="text" class="form-control  input-sm" ng-model="task.comment"> </textarea>
+ 											</div>
+ 											<br/><br/>
+ 											<div class="form-group">
+ 												<button type="button" class="btn btn-primary form-control btn-sm"   ng-click="saveComment(task.uid)" >Speichern</button>
+  											</div>
+										</form>											
+			 					 	</div> 
+								</div> 
+					 		</div>  
+			 			</div>  
+			 			 
+			 		
+			 			<div class="row newtask">
+			 				<div class="col-lg-9">
+ 								<form class="class="form-inline" role="form">
+									  <div class="form-group">
+									  		<div class="col-lg-4">									  											  
+	 											<input type="text" class="form-control input-sm"  ng-model="newTask.txt" placeholder="neues ToDo" > 
+	 										</div>
+	 										<button type="button" class="btn btn-primary btn-sm" ng-click="createNewTask()" >ToDo hinzufügen</button>									 		 
+ 									  </div> 
+								</form>
+ 							</div> 
+						</div>
+ 				</pane>		
+ 				
+				<pane title="Themen">
+					<br/>
+					<h4>Themensammlung für Besprechungen</h4>				 
+	 				 	<grgetherpad  id="etherpadtopic"  data="selectedProject.etherpadtopic"> </grgetherpad>
+ 					Hallo darüber ist das Ehterpad !!! 
+				</pane>				    
+				
+				<pane title="Protokoll"  >
+					<br/>
+					<h4>Protokolle von Besprechungen</h4>
+ 				 	<grgetherpad  id="etherpadprotocol" data="selectedProject.etherpadprotocol"> </grgetherpad>
+ 				 	 
+				</pane>
+				
+				<pane title="Files / Scans"  >
+					<div class="row">
+						
+						<div class="col-lg-5">
+							<h4>Dateien zum Pojekt hinzufügen</h4>
+						</div>
+						<div class="col-lg-4">					
+							<div class="attachments-add-files" ng-file-drop="addFilesToProject($files, selectedProject.uid)" ng-file-drag-over-class="attachments-add-files-drop"
+        				  		ng-file-drop-available="dropSupported=true"	ng-show="dropSupported" >Dateien hier mit Drag'n'drop ablegen</div>
+ 						</div> 
+					
+					</div>
+					<div class="row">
+						<div class="col-lg-5">
+							<form role="form" class="form-inline" >
+								<div class="form-group">
+					 				<div>
+										<input type="search" class="form-control  input-sm" ng-model="filterFilesProject"  placeholder="Dateien filtern"> 
+									</div> 	
+								</div>
+							</form>
+						</div>
+					</div>
+					
+					<div class="row project-files" ng-repeat="file in selectedProject.files | filter:filterFilesProject">
+						<div class="task-attachment-files col-lg-7">
+							<a ng-click="downloadFile(file)">{{file.filename}}</a> 
+						</div>	  
+						<div class="col-lg-1">
+							<span ng-click="addFilesFromProject(selectedProject.uid, file.uid)" class="glyphicon glyphicon-trash"> </span> 
+						</div>
+					</div>				
+ 				</pane>
+				
+					     
+			</tabs>
+		</div>
+
+		<div ng-show="showNewProjectDialog" >
+			<h3>Neues Projekt anlegen </h3>
+			<div class="row">
+				<form role="form" class="form-inline col-lg-4" >
+					<div class="form-group">
+		 				<div>
+							<input type="text" class="form-control  input-sm" ng-model="newProjectTitle"  placeholder="Projektname"> 
+						</div> 	
+					</div>
+					<button type="button" class="btn btn-primary btn-sm"   ng-click="createNewProject()" >Projekt anlegen</button>
+				</form>
+			</div>
+			<br/><br/>  
+		</div>		 
+	</div>
+</div>        
+ 
